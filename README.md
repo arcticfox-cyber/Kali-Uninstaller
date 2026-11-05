@@ -1,4 +1,16 @@
-# Kali Uninstaller
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&pause=1000&color=00D9FF&center=true&vCenter=true&width=650&lines=Kali+Uninstaller;Clean+up+your+Kali+Linux+system;Browse.+Review.+Uninstall." alt="Animated Kali Uninstaller title" />
+
+**A graphical package-removal utility for Kali Linux**
+
+![Platform](https://img.shields.io/badge/Platform-Kali%20Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
+
+</div>
+
+---
 
 **Kali Uninstaller** is a graphical package-removal utility for Kali Linux and other Debian-based systems. It helps you find installed packages, review package details, and remove selected software through a focused interface with a confirmation step.
 
