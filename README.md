@@ -1,12 +1,14 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&pause=1000&color=00D9FF&center=true&vCenter=true&width=650&lines=Kali+Uninstaller;Clean+up+your+Kali+Linux+system;Browse.+Review.+Uninstall." alt="Animated Kali Uninstaller title" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=800&size=34&duration=2800&pause=900&color=00E5FF&center=true&vCenter=true&repeat=true&width=850&height=90&lines=KALI+UNINSTALLER;CONTROL+YOUR+PACKAGES;BROWSE+%E2%80%A2+REVIEW+%E2%80%A2+REMOVE" alt="Kali Uninstaller animated title" />
 
-**A graphical package-removal utility for Kali Linux**
+<p><strong>A clean graphical package manager for Kali Linux</strong></p>
 
-![Platform](https://img.shields.io/badge/Platform-Kali%20Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
+<p>
+  <img src="https://img.shields.io/badge/KALI_LINUX-SUPPORTED-557C94?style=flat-square&logo=kalilinux&logoColor=white" alt="Kali Linux supported" />
+  <img src="https://img.shields.io/badge/PYTHON-3.x-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3" />
+  <img src="https://img.shields.io/badge/LICENSE-PROPRIETARY-red?style=flat-square" alt="Proprietary license" />
+</p>
 
 </div>
 
