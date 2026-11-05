@@ -22,7 +22,6 @@ The application uses APT to purge selected packages and remove automatically ins
 
 ## ✨ Features
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=EXPLORE+THE+FEATURES" alt="Animated section label" /></p>
 
 - Graphical package browser with package names, versions, sizes, and descriptions.
 - Search and filters for all packages, critical packages, and packages larger than 100 MB.
@@ -37,7 +36,6 @@ The application uses APT to purge selected packages and remove automatically ins
 
 ## ⚙️ Requirements
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=CHECK+THE+REQUIREMENTS" alt="Animated section label" /></p>
 
 - Kali Linux or another Debian-based Linux distribution.
 - Python 3.
@@ -48,7 +46,6 @@ The installer checks for Tkinter and attempts to install `python3-tk` if it is m
 
 ## 🚀 Step 1 — Download the project
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=STEP+01+%7C+GET+THE+PROJECT" alt="Animated section label" /></p>
 
 Clone the repository:
 
@@ -66,7 +63,6 @@ If you downloaded the ZIP from GitHub instead, extract it and open a terminal in
 
 ## 📦 Step 2 — Install Kali Uninstaller
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=STEP+02+%7C+INSTALL" alt="Animated section label" /></p>
 
 Make the installer executable:
 
@@ -84,7 +80,6 @@ The installer places the application in `/opt/kali-uninstaller`, creates the `ka
 
 ## 🖥️ Step 3 — Launch the application
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=STEP+03+%7C+LAUNCH" alt="Animated section label" /></p>
 
 **Launch from any terminal:**
 
@@ -107,7 +102,6 @@ chmod +x run.sh
 
 ## 🐍 Step 4 — Browse and select packages
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=STEP+04+%7C+BROWSE+PACKAGES" alt="Animated section label" /></p>
 
 1. Open Kali Uninstaller.
 2. Search for the package you want to inspect.
@@ -117,7 +111,6 @@ chmod +x run.sh
 
 ## 🔍 Step 5 — Review before removal
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=STEP+05+%7C+REVIEW+CAREFULLY" alt="Animated section label" /></p>
 
 1. Select only the package or packages you intend to remove.
 2. Review your selected packages.
@@ -127,7 +120,6 @@ chmod +x run.sh
 
 ## 🗑️ Step 6 — Uninstall selected packages
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=STEP+06+%7C+UNINSTALL" alt="Animated section label" /></p>
 
 When you confirm the operation, Kali Uninstaller uses APT purge and autoremove to remove the selected packages and dependencies that APT considers no longer required.
 
@@ -135,7 +127,6 @@ When you confirm the operation, Kali Uninstaller uses APT purge and autoremove t
 
 ## 🩺 Diagnostics
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=SYSTEM+CHECK+%7C+DIAGNOSTICS" alt="Animated section label" /></p>
 
 If the application fails to start or you encounter an issue, run the diagnostic command from the project directory:
 
@@ -153,7 +144,6 @@ The diagnostic mode checks the application environment and reports common setup 
 
 ## ❌ Uninstallation — Remove Kali Uninstaller
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=REMOVE+KALI+UNINSTALLER" alt="Animated section label" /></p>
 
 To uninstall the **Kali Uninstaller application itself** (not packages you previously removed), run:
 
@@ -170,7 +160,6 @@ This removes the installed application files, command, and desktop menu entry.
 
 ## ⌨️ Useful commands
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=QUICK+COMMAND+REFERENCE" alt="Animated section label" /></p>
 
 | Task | Command |
 |---|---|
@@ -185,13 +174,11 @@ This removes the installed application files, command, and desktop menu entry.
 
 ## ⚠️ Safety notice
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=SAFETY+FIRST" alt="Animated section label" /></p>
 
 Kali Uninstaller performs package-management operations with elevated privileges. Removing critical packages or dependencies can damage your operating system. Always verify every selection and review APT's proposed changes. Keep backups of important data.
 
 ## 📄 License
 
-<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=14&duration=1900&pause=650&color=00C9A7&center=true&vCenter=true&repeat=true&width=430&height=28&lines=LICENSE+AND+USAGE" alt="Animated section label" /></p>
 
 Kali Uninstaller is proprietary software. All rights are reserved by the copyright holder. Copying, modifying, distributing, sublicensing, or reusing this software requires prior written permission.
 
