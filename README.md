@@ -1,8 +1,8 @@
-# Kali Uninstaller
-
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=800&size=34&duration=2200&pause=700&color=00E5FF&center=true&vCenter=true&repeat=true&width=850&height=85&lines=WELCOME+TO+KALI+UNINSTALLER;BROWSE+INSTALLED+PACKAGES;REVIEW+CAREFULLY;REMOVE+WITH+CONFIDENCE" alt="Animated Kali Uninstaller banner" />
+<h1 align="center">Kali Uninstaller</h1>
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=800&size=26&duration=2200&pause=700&color=00E5FF&center=true&vCenter=true&repeat=true&width=700&height=65&lines=WELCOME+TO+KALI+UNINSTALLER;BROWSE+INSTALLED+PACKAGES;REVIEW+CAREFULLY;REMOVE+WITH+CONFIDENCE" alt="Animated Kali Uninstaller banner" />
 
 <p><strong>A graphical package-removal utility for Kali Linux</strong></p>
 
