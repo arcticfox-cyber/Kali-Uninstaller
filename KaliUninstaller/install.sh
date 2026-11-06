@@ -28,7 +28,7 @@ else
 fi
 
 # ---------- required files ----------
-for f in kali_uninstaller.py assets/logo.png; do
+for f in kali_uninstaller.py uninstall_me.sh assets/logo.png; do
     if [ ! -f "$SCRIPT_DIR/$f" ]; then
         echo "[X] Missing file: $f — poora folder extract karo (zip ka jawab: unzip KaliUninstaller-v2.2.zip)." >&2
         exit 1
@@ -61,6 +61,7 @@ echo "[*] Files copy ho rahi hain -> $APP_DIR"
 rm -rf "$APP_DIR"
 mkdir -p "$APP_DIR/assets"
 install -m 755 "$SCRIPT_DIR/kali_uninstaller.py" "$APP_DIR/kali_uninstaller.py"
+install -m 755 "$SCRIPT_DIR/uninstall_me.sh" "$APP_DIR/uninstall_me.sh"
 [ -f "$SCRIPT_DIR/assets/logo.png" ]        && install -m 644 "$SCRIPT_DIR/assets/logo.png"        "$APP_DIR/assets/logo.png"        || true
 [ -f "$SCRIPT_DIR/assets/logo_small.png" ]  && install -m 644 "$SCRIPT_DIR/assets/logo_small.png"  "$APP_DIR/assets/logo_small.png"  || true
 [ -f "$SCRIPT_DIR/assets/splash.png" ]      && install -m 644 "$SCRIPT_DIR/assets/splash.png"      "$APP_DIR/assets/splash.png"      || true
