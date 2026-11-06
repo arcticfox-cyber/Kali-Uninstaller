@@ -48,11 +48,25 @@ if [ -n "${SUDO_USER:-}" ]; then
 fi
 
 echo "[*] Installing files into $APP_DIR..."
+# The GUI runs with root privileges: never trust a user-writable install path.
+if [ -L "$APP_DIR" ] || { [ -e "$APP_DIR" ] && [ ! -d "$APP_DIR" ]; }; then
+    echo "[X] Unsafe install path: $APP_DIR (must be a real directory, not a symlink)." >&2
+    exit 1
+fi
 mkdir -p "$APP_DIR/assets"
-install -m 755 "$SCRIPT_DIR/kali_uninstaller.py" "$APP_DIR/kali_uninstaller.py"
+if [ -L "$APP_DIR/assets" ]; then
+    echo "[X] Unsafe assets path: $APP_DIR/assets (symlinks are not accepted)." >&2
+    exit 1
+fi
+chown root:root "$APP_DIR" "$APP_DIR/assets"
+chmod 755 "$APP_DIR" "$APP_DIR/assets"
+
+# Replace destination links/files rather than following an old symlink.
+rm -f "$APP_DIR/kali_uninstaller.py" "$APP_DIR/uninstall_me.sh"
+install -o root -g root -m 755 "$SCRIPT_DIR/kali_uninstaller.py" "$APP_DIR/kali_uninstaller.py"
 
 # Install and verify the uninstaller explicitly; never report success if it is absent.
-install -m 755 "$SCRIPT_DIR/uninstall_me.sh" "$APP_DIR/uninstall_me.sh"
+install -o root -g root -m 755 "$SCRIPT_DIR/uninstall_me.sh" "$APP_DIR/uninstall_me.sh"
 if [ ! -s "$APP_DIR/uninstall_me.sh" ]; then
     echo "[!] install utility did not create the uninstaller; retrying with cp..." >&2
     cp "$SCRIPT_DIR/uninstall_me.sh" "$APP_DIR/uninstall_me.sh"
@@ -66,7 +80,8 @@ echo "[OK] Uninstaller installed and verified: $APP_DIR/uninstall_me.sh"
 
 for asset in logo.png logo_small.png splash.png; do
     if [ -f "$SCRIPT_DIR/assets/$asset" ]; then
-        install -m 644 "$SCRIPT_DIR/assets/$asset" "$APP_DIR/assets/$asset"
+        rm -f "$APP_DIR/assets/$asset"
+        install -o root -g root -m 644 "$SCRIPT_DIR/assets/$asset" "$APP_DIR/assets/$asset"
     fi
 done
 
