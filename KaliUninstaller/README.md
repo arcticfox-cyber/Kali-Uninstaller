@@ -82,7 +82,7 @@ sudo apt install -y python3-tk
 5. Start the uninstall action only when you are sure the selected package is safe to remove.
 6. Read the confirmation dialog and review APT's proposed actions before approving.
 
-The application uses APT purge and autoremove operations for package removal. APT may propose removing additional dependencies.
+The application uses APT purge for the packages you select. It simulates APT's proposed removal plan first and stops if APT proposes removing an unselected package identified as critical. It does not run a global `autoremove`, avoiding the removal of unrelated orphaned packages. APT may still remove other dependencies needed to complete the selected removal; check the operation log.
 
 ## Diagnostics
 
