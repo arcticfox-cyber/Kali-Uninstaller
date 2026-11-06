@@ -48,7 +48,6 @@ if [ -n "${SUDO_USER:-}" ]; then
 fi
 
 echo "[*] Installing files into $APP_DIR..."
-rm -rf "$APP_DIR"
 mkdir -p "$APP_DIR/assets"
 install -m 755 "$SCRIPT_DIR/kali_uninstaller.py" "$APP_DIR/kali_uninstaller.py"
 
@@ -74,7 +73,6 @@ done
 echo "[*] Creating /usr/bin/$APP_ID..."
 cat > "/usr/bin/$APP_ID" <<'EOF'
 #!/bin/sh
-export DISPLAY="${DISPLAY:-:0}"
 exec /usr/bin/python3 /opt/kali-uninstaller/kali_uninstaller.py "$@"
 EOF
 chmod 755 "/usr/bin/$APP_ID"
@@ -101,7 +99,7 @@ command -v update-desktop-database >/dev/null 2>&1 && update-desktop-database /u
 
 echo
 echo "=== SELF-CHECK (doctor) ==="
-python3 "$APP_DIR/kali_uninstaller.py" --doctor || true
+python3 "$APP_DIR/kali_uninstaller.py" --doctor
 
 echo
 echo "=============================================="
