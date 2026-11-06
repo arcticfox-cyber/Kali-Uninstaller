@@ -536,7 +536,7 @@ class Confirm(tk.Toplevel):
         tk.Label(listf, text=shown, bg=PANEL, fg=RED_DIM, justify="left",
                  font=("DejaVu Sans Mono", 11, "bold"), wraplength=460,
                  padx=14, pady=10).pack(anchor="w")
-        tk.Label(listf, text="apt-get remove --purge  +  autoremove",
+        tk.Label(listf, text="APT purge — selected packages only",
                  bg=PANEL, fg=DIM,
                  font=("DejaVu Sans Mono", 9)).pack(anchor="w", padx=14, pady=(0, 8))
 
@@ -1262,21 +1262,51 @@ class App(tk.Tk):
                    APT_LISTCHANGES_FRONTEND="none")
         ok = True
         try:
-            cmds = [["apt-get", "remove", "--purge", "-y", *names],
-                    ["apt-get", "autoremove", "--purge", "-y"]]
-            for cmd in cmds:
-                self._q.put(("log", f"\n$ {' '.join(cmd)}\n"))
-                proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
-                                        stderr=subprocess.STDOUT, text=True,
-                                        bufsize=1, env=env)
-                self._proc = proc
-                for line in proc.stdout:
-                    self._q.put(("log", line))
-                rc = proc.wait()
-                self._proc = None
-                if rc != 0:
-                    ok = False
-                    self._q.put(("log", f"[exit code {rc}]\n"))
+            # First simulate APT's exact plan. Never run a global autoremove:
+            # that can delete unrelated packages that were not selected here.
+            preview_cmd = ["apt-get", "-s", "remove", "--purge", "--", *names]
+            self._q.put(("log", f"\n$ {' '.join(preview_cmd)}\n"))
+            preview = subprocess.run(
+                preview_cmd, capture_output=True, text=True, timeout=180, env=env
+            )
+            preview_text = (preview.stdout or "") + (preview.stderr or "")
+            if preview_text:
+                self._q.put(("log", preview_text))
+            if preview.returncode != 0:
+                ok = False
+                self._q.put(("log", f"[APT simulation failed: exit code {preview.returncode}]\n"))
+                self._q.put(("done", False))
+                return
+
+            selected = set(names)
+            unexpected_critical = []
+            for line in preview.stdout.splitlines():
+                fields = line.split()
+                if len(fields) >= 2 and fields[0] in ("Remv", "Purg"):
+                    package_name = fields[1].split(":", 1)[0]
+                    if is_critical(package_name) and package_name not in selected:
+                        unexpected_critical.append(package_name)
+            if unexpected_critical:
+                ok = False
+                blocked = ", ".join(sorted(set(unexpected_critical)))
+                self._q.put(("log", "[SAFETY STOP] APT also proposed removing critical system package(s) not selected: "
+                               + blocked + "\nNo package was removed.\n"))
+                self._q.put(("done", False))
+                return
+
+            cmd = ["apt-get", "remove", "--purge", "-y", "--", *names]
+            self._q.put(("log", f"\n$ {' '.join(cmd)}\n"))
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                    stderr=subprocess.STDOUT, text=True,
+                                    bufsize=1, env=env)
+            self._proc = proc
+            for line in proc.stdout:
+                self._q.put(("log", line))
+            rc = proc.wait()
+            self._proc = None
+            if rc != 0:
+                ok = False
+                self._q.put(("log", f"[exit code {rc}]\n"))
         except Exception as exc:
             ok = False
             self._q.put(("log", f"\n[error] {exc}\n"))
@@ -1336,6 +1366,11 @@ class App(tk.Tk):
                             f"{real_icons:,} real tool icons mil gaye — "
                             "search karo aur uninstall karo", GREEN)
                 elif kind == "load_error":
+                    self.pbar.stop()
+                    self.pbar.pack_forget()
+                    self._refreshing = False
+                    self.busy = False
+                    self.big_btn.configure(state="normal", bg=RED)
                     self.set_status(f"FAILED — package list load: {payload}",
                                     RED)
                 elif kind == "done":
