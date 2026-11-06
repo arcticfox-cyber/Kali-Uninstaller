@@ -1,187 +1,144 @@
 <div align="center">
 
-<p align="center">
-  <img src="logo.png" alt="Kali Uninstaller wolf banner" width="100%" />
-</p>
+<img src="logo.png" alt="Kali Uninstaller banner" width="100%" />
 
-<h1 align="center"><strong>KALI UNINSTALLER</strong></h1>
+# KALI UNINSTALLER
 
-<p><strong>A graphical package-removal utility for Kali Linux</strong></p>
+**A graphical package management and removal utility for Kali Linux**
 
 <p>
-  <img src="https://img.shields.io/badge/KALI_LINUX-SUPPORTED-557C94?style=flat-square&logo=kalilinux&logoColor=white" alt="Kali Linux supported" />
-  <img src="https://img.shields.io/badge/PYTHON-3.x-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3" />
-  <img src="https://img.shields.io/badge/LICENSE-PROPRIETARY-red?style=flat-square" alt="Proprietary license" />
+  <img src="https://img.shields.io/badge/Platform-Kali%20Linux-557C94?style=flat-square&logo=kalilinux&logoColor=white" alt="Kali Linux" />
+  <img src="https://img.shields.io/badge/Language-Python%203-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3" />
+  <img src="https://img.shields.io/badge/Interface-Tkinter-2C3E50?style=flat-square" alt="Tkinter GUI" />
+  <img src="https://img.shields.io/badge/License-Proprietary-red?style=flat-square" alt="Proprietary license" />
 </p>
 
 </div>
 
 ---
 
-**Kali Uninstaller** helps you browse installed packages, inspect package information, and remove selected software through a graphical interface. It is designed for Kali Linux and may also work on other Debian-based distributions.
+Kali Uninstaller provides a graphical way to browse installed packages, inspect package details, and remove selected software using APT. It is built for Kali Linux and may also run on other Debian-based distributions.
 
-The application uses APT to purge selected packages and remove automatically installed dependencies that are no longer required. It requests elevated privileges when needed. Always review the packages and APT's proposed changes before confirming removal.
+The application is located in the `KaliUninstaller/` directory. Follow the installation instructions below from that directory.
 
-## ✨ Features
+## Features
 
+- Browse installed packages with package names, versions, sizes, and descriptions.
+- Search packages and filter critical packages or packages larger than 100 MB.
+- View package details and package statistics.
+- Detect installed application icons from desktop entries and system icon locations.
+- Sort package columns and use keyboard shortcuts and context menus.
+- Review a confirmation dialog and view the operation log.
+- Request elevated privileges when required.
+- Run a diagnostic check with `--doctor`.
 
-- Graphical package browser with package names, versions, sizes, and descriptions.
-- Search and filters for all packages, critical packages, and packages larger than 100 MB.
-- Package icons detected from desktop entries, installed icon themes, and system pixmaps.
-- Package details panel and package statistics.
-- Sortable package, version, and size columns.
-- Right-click context menu and keyboard shortcuts.
-- Confirmation dialog and operation log.
-- Automatic privilege handling through `pkexec` or `sudo`.
-- Diagnostic mode with `--doctor`.
-- Embedded visual assets.
+## Requirements
 
-## ⚙️ Requirements
-
-
-- Kali Linux or another Debian-based Linux distribution.
+- Kali Linux (recommended), or another Debian-based Linux distribution.
 - Python 3.
-- `python3-tk` (Tkinter).
 - APT and `dpkg`.
+- Tkinter (`python3-tk`).
 
 The installer checks for Tkinter and attempts to install `python3-tk` if it is missing.
 
-## 🚀 Step 1 — Download the project
-
+## Installation
 
 Clone the repository:
 
 ```bash
 git clone https://github.com/arcticfox-cyber/Kali-Uninstaller.git
+cd Kali-Uninstaller/KaliUninstaller
 ```
 
-Enter the project directory:
-
-```bash
-cd Kali-Uninstaller
-```
-
-If you downloaded the ZIP from GitHub instead, extract it and open a terminal in the extracted project folder.
-
-## 📦 Step 2 — Install Kali Uninstaller
-
-
-Make the installer executable:
+Make the installer executable and run it:
 
 ```bash
 chmod +x install.sh
-```
-
-Run the installer with administrator privileges:
-
-```bash
 sudo ./install.sh
 ```
 
-The installer places the application in `/opt/kali-uninstaller`, creates the `kali-uninstaller` command, adds a desktop Applications menu entry, and runs a diagnostic check.
+The installer places the application in `/opt/kali-uninstaller`, creates the `kali-uninstaller` terminal command, adds a desktop menu entry, and runs a diagnostic check.
 
-## 🖥️ Step 3 — Launch the application
+## Launch
 
-
-**Launch from any terminal:**
+**From a terminal:**
 
 ```bash
 kali-uninstaller
 ```
 
-**Or launch from the desktop menu:**
+**From the desktop menu:**
 
 ```text
 Applications → System → Kali Uninstaller
 ```
 
-**Run directly from the downloaded project without installing:**
+**Run directly without installing** (from the `KaliUninstaller/` directory):
 
 ```bash
 chmod +x run.sh
 ./run.sh
 ```
 
-## 🐍 Step 4 — Browse and select packages
+## Diagnostics
 
-
-1. Open Kali Uninstaller.
-2. Search for the package you want to inspect.
-3. Use the available filters to narrow the package list.
-4. Select a package to review its details.
-5. Check the package name, version, size, and information carefully.
-
-## 🔍 Step 5 — Review before removal
-
-
-1. Select only the package or packages you intend to remove.
-2. Review your selected packages.
-3. Read the confirmation dialog before proceeding.
-4. Check APT's proposed actions.
-5. Cancel if an essential package or an unexpected dependency is listed.
-
-## 🗑️ Step 6 — Uninstall selected packages
-
-
-When you confirm the operation, Kali Uninstaller uses APT purge and autoremove to remove the selected packages and dependencies that APT considers no longer required.
-
-**Important:** Purge can remove package configuration files. Removing essential system packages can break Kali Linux or make it unbootable. Do not remove packages unless you understand their purpose.
-
-## 🩺 Diagnostics
-
-
-If the application fails to start or you encounter an issue, run the diagnostic command from the project directory:
+If the application does not start or you encounter an issue, run:
 
 ```bash
 python3 kali_uninstaller.py --doctor
 ```
 
-After installation, you can also try:
+After installation, you can also run:
 
 ```bash
 kali-uninstaller --doctor
 ```
 
-The diagnostic mode checks the application environment and reports common setup problems.
+## Remove Kali Uninstaller
 
-## ❌ Uninstallation — Remove Kali Uninstaller
-
-
-To uninstall the **Kali Uninstaller application itself** (not packages you previously removed), run:
+To remove the Kali Uninstaller application itself:
 
 ```bash
 sudo /opt/kali-uninstaller/uninstall_me.sh
 ```
 
-This removes the installed application files, command, and desktop menu entry.
+This removes the installed application, terminal command, and desktop menu entry. It does **not** restore packages previously removed by the tool.
 
-**Please note:**
-- This command removes Kali Uninstaller itself.
-- It does not restore software packages removed earlier.
-- It does not undo previous APT purge or autoremove operations.
+## Repository layout
 
-## ⌨️ Useful commands
+```text
+Kali-Uninstaller/
+├── LICENSE
+├── README.md
+├── logo.png
+└── KaliUninstaller/
+    ├── README.md
+    ├── install.sh
+    ├── run.sh
+    ├── uninstall_me.sh
+    ├── kali_uninstaller.py
+    └── assets/
+        ├── logo.png
+        ├── logo_small.png
+        └── splash.png
+```
 
+## Safety notice
 
-| Task | Command |
-|---|---|
-| Clone repository | `git clone https://github.com/arcticfox-cyber/Kali-Uninstaller.git` |
-| Enter project folder | `cd Kali-Uninstaller` |
-| Make installer executable | `chmod +x install.sh` |
-| Install | `sudo ./install.sh` |
-| Launch installed app | `kali-uninstaller` |
-| Run without installing | `./run.sh` |
-| Run diagnostics | `python3 kali_uninstaller.py --doctor` |
-| Uninstall the application | `sudo /opt/kali-uninstaller/uninstall_me.sh` |
+Kali Uninstaller performs package-management operations with elevated privileges. Its removal process uses APT purge and autoremove operations. These can remove configuration files and dependencies, and removing essential packages may damage the operating system or make it unbootable.
 
-## ⚠️ Safety notice
+Always review the selected packages and APT's proposed actions before confirming. Cancel the operation if an essential or unexpected package is listed. Keep backups of important data.
 
+## License
 
-Kali Uninstaller performs package-management operations with elevated privileges. Removing critical packages or dependencies can damage your operating system. Always verify every selection and review APT's proposed changes. Keep backups of important data.
-
-## 📄 License
-
-
-Kali Uninstaller is proprietary software. All rights are reserved by the copyright holder. Copying, modifying, distributing, sublicensing, or reusing this software requires prior written permission.
+Kali Uninstaller is proprietary software. All rights are reserved by the copyright holder. No permission is granted to use, copy, modify, distribute, or create derivative works without prior written permission, except where applicable law requires otherwise.
 
 See the [LICENSE](LICENSE) file for the complete terms.
+
+---
+
+<div align="center">
+
+**Developed by Arctic Fox**
+
+</div>
