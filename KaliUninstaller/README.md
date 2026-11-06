@@ -115,7 +115,14 @@ To remove the installed Kali Uninstaller application (not packages previously re
 sudo /opt/kali-uninstaller/uninstall_me.sh
 ```
 
-This removes the installed application directory, terminal command, and desktop menu entry.
+The installer now copies `uninstall_me.sh` into `/opt/kali-uninstaller` as part of installation. If you installed an older build and the command reports that the file does not exist, first update the project and rerun the installer to repair the installation:
+
+```bash
+cd Kali-Uninstaller/KaliUninstaller
+sudo ./install.sh
+```
+
+Then run the uninstall command above. The removal script deletes the application directory, terminal command, and desktop menu entry. It does not purge unrelated system packages.
 
 **Important:** Removing Kali Uninstaller does not reinstall software packages that were removed earlier and does not reverse previous APT operations.
 
