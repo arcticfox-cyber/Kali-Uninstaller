@@ -133,7 +133,7 @@ The installer verifies the installed uninstall script before reporting success. 
 
 ## Safety notice
 
-Kali Uninstaller performs privileged package-management operations. Purging deletes package configuration files, and APT may remove additional dependencies needed to complete the selected request. The tool simulates the plan and blocks removal when an unselected package marked critical is included. It deliberately does not run global `autoremove`. Removing essential system components may still make Kali Linux unstable or unbootable.
+Kali Uninstaller performs privileged package-management operations. Purging deletes package configuration files, and APT may remove additional dependencies needed to complete the selected request. The tool simulates the plan, blocks any Essential package removal, and blocks removal when an unselected package marked critical is included. It deliberately does not run global `autoremove`. Removing essential system components may still make Kali Linux unstable or unbootable.
 
 - Check every selected package before proceeding.
 - Read APT's proposed changes in the confirmation flow.
