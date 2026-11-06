@@ -185,7 +185,9 @@ CRITICAL_PREFIX = ("linux-image", "linux-headers", "grub", "kali-", "xserver-xor
 
 
 def is_critical(name):
-    return name in CRITICAL_EXACT or name.startswith(CRITICAL_PREFIX)
+    # Multi-Arch package names may include a suffix such as :amd64.
+    base_name = name.split(":", 1)[0]
+    return base_name in CRITICAL_EXACT or base_name.startswith(CRITICAL_PREFIX)
 
 
 class Pkg:
