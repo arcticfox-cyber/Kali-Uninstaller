@@ -552,7 +552,7 @@ class Confirm(tk.Toplevel):
                                                           anchor="w")
         else:
             tk.Label(self, text="Selected package purge hoga. APT plan pehle simulate hoga; "
-                                "agar koi unselected critical package remove hona ho to operation stop hoga.",
+                                "essential ya unselected critical package aaye to operation stop hoga.",
                      bg=BG, fg=DIM, font=("DejaVu Sans", 10),
                      wraplength=470, justify="left").pack(padx=26, anchor="w")
 
@@ -1284,7 +1284,21 @@ class App(tk.Tk):
 
             selected = set(names)
             unexpected_critical = []
+            essential_packages = set()
+            in_essential_section = False
             for line in preview.stdout.splitlines():
+                lower_line = line.lower()
+                if "following essential packages will be removed" in lower_line:
+                    in_essential_section = True
+                    continue
+                if in_essential_section:
+                    item = line.strip()
+                    if not item:
+                        in_essential_section = False
+                    elif item.startswith(("0 upgraded", "WARNING:", "The following")):
+                        in_essential_section = False
+                    else:
+                        essential_packages.add(item.split()[0])
                 fields = line.split()
                 if len(fields) >= 2 and fields[0] in ("Remv", "Purg"):
                     package_name = fields[1]
@@ -1293,6 +1307,13 @@ class App(tk.Tk):
                             and package_name not in selected
                             and package_base not in selected):
                         unexpected_critical.append(package_name)
+            if essential_packages:
+                ok = False
+                blocked = ", ".join(sorted(essential_packages))
+                self._q.put(("log", "[SAFETY STOP] APT marks these package(s) as ESSENTIAL: "
+                               + blocked + "\nEssential packages are never removed by this tool.\n"))
+                self._q.put(("done", False))
+                return
             if unexpected_critical:
                 ok = False
                 blocked = ", ".join(sorted(set(unexpected_critical)))
