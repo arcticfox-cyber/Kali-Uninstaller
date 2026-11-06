@@ -1297,6 +1297,8 @@ class App(tk.Tk):
                         in_essential_section = False
                     elif item.startswith(("0 upgraded", "WARNING:", "The following")):
                         in_essential_section = False
+                    elif item.startswith("This should NOT be done"):
+                        continue
                     else:
                         essential_packages.add(item.split()[0])
                 fields = line.split()
