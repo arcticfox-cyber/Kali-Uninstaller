@@ -57,9 +57,7 @@ chmod +x install.sh
 sudo ./install.sh
 ```
 
-The installer places the application in `/opt/kali-uninstaller`, copies the uninstall script into that directory, creates the `kali-uninstaller` terminal command, adds a desktop menu entry, and runs a diagnostic check.
-
-**Important:** If you installed an older version and the uninstall command reports `No such file or directory` or `command not found`, rerun the installer using the repair steps in the uninstall section below.
+The installer installs the application in `/opt/kali-uninstaller`, verifies that the uninstall script was copied successfully, creates the `kali-uninstaller` terminal command, adds a desktop menu entry, and runs a diagnostic check. Installation now stops with an error if the uninstall script cannot be installed.
 
 ## Launch
 
@@ -98,29 +96,29 @@ kali-uninstaller --doctor
 
 ## Remove Kali Uninstaller
 
-To remove the Kali Uninstaller application itself, first make sure the uninstall script has been installed.
-
-**If the following command works, run it:**
-
-```bash
-sudo /opt/kali-uninstaller/uninstall_me.sh
-```
-
-**If you get `command not found` or `No such file or directory`, repair the installation first.** Run these commands from the repository's `KaliUninstaller/` directory:
+To remove the installed Kali Uninstaller application, use the uninstall script from your cloned repository. This avoids relying on a previously copied file:
 
 ```bash
 cd ~/Kali-Uninstaller/KaliUninstaller
+sudo sh ./uninstall_me.sh
+```
+
+Alternatively, after a successful installation that displays the uninstaller verification message, you can run:
+
+```bash
+sudo sh /opt/kali-uninstaller/uninstall_me.sh
+```
+
+If you want to repair or update the installed copy first, run:
+
+```bash
+cd ~/Kali-Uninstaller/KaliUninstaller
+git pull
 chmod +x install.sh
 sudo ./install.sh
 ```
 
-Wait for the installer to finish successfully. It copies `uninstall_me.sh` to `/opt/kali-uninstaller/uninstall_me.sh`. Then run:
-
-```bash
-sudo /opt/kali-uninstaller/uninstall_me.sh
-```
-
-The uninstall script removes the installed Kali Uninstaller application, terminal command, and desktop menu entry. It does **not** restore packages previously removed by the tool or reverse earlier APT operations.
+The installer verifies that `/opt/kali-uninstaller/uninstall_me.sh` exists and is executable before reporting success. The removal script deletes the installed application directory, terminal command, and desktop menu entry. It does **not** restore packages previously removed by the tool or reverse earlier APT operations.
 
 ## Repository layout
 
