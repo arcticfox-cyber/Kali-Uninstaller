@@ -30,7 +30,7 @@ The installer checks for Tkinter and attempts to install `python3-tk` when it is
 
 ## Installation
 
-Run these commands from the repository root after cloning:
+Run these commands after cloning:
 
 ```bash
 git clone https://github.com/arcticfox-cyber/Kali-Uninstaller.git
@@ -39,14 +39,7 @@ chmod +x install.sh
 sudo ./install.sh
 ```
 
-The installer:
-
-1. Checks for required application files.
-2. Checks for Tkinter and attempts to install `python3-tk` if needed.
-3. Installs the application under `/opt/kali-uninstaller`.
-4. Creates the `kali-uninstaller` command.
-5. Adds an Applications menu entry.
-6. Runs the application's diagnostic check.
+The installer checks the required files and dependencies, installs the application under `/opt/kali-uninstaller`, verifies the uninstall script, creates the `kali-uninstaller` command, adds an Applications menu entry, and runs the diagnostic check. It exits with an error if the uninstall script cannot be installed.
 
 ## Launch the application
 
@@ -109,20 +102,32 @@ Review the diagnostic output for missing dependencies or environment issues.
 
 ## Uninstall Kali Uninstaller
 
-To remove the installed Kali Uninstaller application (not packages previously removed by it), run:
+**Recommended — run the original uninstall script from the cloned repository:**
 
 ```bash
-sudo /opt/kali-uninstaller/uninstall_me.sh
+cd ~/Kali-Uninstaller/KaliUninstaller
+sudo sh ./uninstall_me.sh
 ```
 
-The installer now copies `uninstall_me.sh` into `/opt/kali-uninstaller` as part of installation. If you installed an older build and the command reports that the file does not exist, first update the project and rerun the installer to repair the installation:
+This method does not depend on the copy under `/opt`.
+
+**Alternative — use the installed copy** (only after the installer reports that the uninstaller was installed and verified):
 
 ```bash
-cd Kali-Uninstaller/KaliUninstaller
+sudo sh /opt/kali-uninstaller/uninstall_me.sh
+```
+
+If the installed copy is missing, update the repository and rerun the installer:
+
+```bash
+cd ~/Kali-Uninstaller
+git pull
+cd KaliUninstaller
+chmod +x install.sh
 sudo ./install.sh
 ```
 
-Then run the uninstall command above. The removal script deletes the application directory, terminal command, and desktop menu entry. It does not purge unrelated system packages.
+The installer verifies the installed uninstall script before reporting success. The removal script deletes the application directory, terminal command, and desktop menu entry. It does not purge unrelated system packages.
 
 **Important:** Removing Kali Uninstaller does not reinstall software packages that were removed earlier and does not reverse previous APT operations.
 
