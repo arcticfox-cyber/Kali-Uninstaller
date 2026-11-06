@@ -106,8 +106,7 @@ def _run_doctor():
     if disp:
         print(f"[OK] GUI display: {disp}")
     else:
-        print("[X] DISPLAY set nahi — desktop (X11) session me kholo")
-        ok = False
+        print("[!] GUI display nahi mila — headless doctor check theek hai; GUI desktop session me kholo")
     if os.geteuid() == 0:
         print("[OK] ROOT mode me chal raha hai")
     else:
@@ -126,6 +125,9 @@ def _run_doctor():
     n_desk = len(_glob.glob("/usr/share/applications/*.desktop"))
     print(f"[i] Icon sources: {n_desk} desktop files, "
           f"{n_icons} system app icons (tool icons yahin se aate hain)")
+    if not is_root() and not (shutil.which("pkexec") or shutil.which("sudo")):
+        print("[X] pkexec aur sudo dono missing — privilege elevation mumkin nahi")
+        ok = False
     if ok:
         print("== RESULT: READY — 'kali-uninstaller' chalao ==")
     else:
