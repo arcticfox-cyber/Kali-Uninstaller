@@ -8,7 +8,7 @@ KALI UNINSTALLER  v2.2  —  Takatwar package remover for Kali Linux
 • Right-click menu, hover highlight, Ctrl+A / F5 shortcuts
 • Splash screen (4 sec) with Moonlit Fox Spirit wallpaper, then main page
 • Opens DIRECTLY in ROOT mode (auto-elevation: pkexec -> sudo)
-• ONE option only: UNINSTALL (purge + autoremove) — nothing else
+• ONE option only: UNINSTALL selected packages (purge; no global autoremove)
 • Fast search: dpkg-query loaded once, instant in-memory filtering
 • ZERO extra dependencies — sab kuch embedded, sirf python3-tk chahiye
 • Kahtarnaak dark neon theme (moonlit purple / danger red)
