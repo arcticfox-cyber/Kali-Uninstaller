@@ -141,7 +141,7 @@ Kali-Uninstaller/
 
 ## Safety notice
 
-Kali Uninstaller performs package-management operations with elevated privileges. It uses APT purge for the packages you select and simulates APT's proposed removal plan first. It does not run a global `autoremove`, which could delete unrelated orphaned packages. The tool stops if APT proposes removing an unselected package identified as critical. APT may still remove other dependencies needed to complete the selected removal, so read the operation log carefully. Purging deletes package configuration files, and removing essential packages may damage the operating system or make it unbootable.
+Kali Uninstaller performs package-management operations with elevated privileges. It uses APT purge for the packages you select and simulates APT's proposed removal plan first. It does not run a global `autoremove`, which could delete unrelated orphaned packages. The tool refuses any APT plan that removes an Essential package and stops if APT proposes removing an unselected package identified as critical. APT may still remove other dependencies needed to complete the selected removal, so read the operation log carefully. Purging deletes package configuration files, and removing essential packages may damage the operating system or make it unbootable.
 
 Always review the selected packages and APT's proposed actions before confirming. Cancel the operation if an essential or unexpected package is listed. Keep backups of important data.
 
