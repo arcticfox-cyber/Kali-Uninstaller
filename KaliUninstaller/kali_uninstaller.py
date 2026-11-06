@@ -1287,8 +1287,11 @@ class App(tk.Tk):
             for line in preview.stdout.splitlines():
                 fields = line.split()
                 if len(fields) >= 2 and fields[0] in ("Remv", "Purg"):
-                    package_name = fields[1].split(":", 1)[0]
-                    if is_critical(package_name) and package_name not in selected:
+                    package_name = fields[1]
+                    package_base = package_name.split(":", 1)[0]
+                    if (is_critical(package_name)
+                            and package_name not in selected
+                            and package_base not in selected):
                         unexpected_critical.append(package_name)
             if unexpected_critical:
                 ok = False
