@@ -136,8 +136,9 @@ The installer verifies the installed uninstall script before reporting success. 
 Kali Uninstaller performs privileged package-management operations. Purging deletes package configuration files, and APT may remove additional dependencies needed to complete the selected request. The tool simulates the plan, blocks any Essential package removal, and blocks removal when an unselected package marked critical is included. It deliberately does not run global `autoremove`. Removing essential system components may still make Kali Linux unstable or unbootable.
 
 - Check every selected package before proceeding.
-- Read APT's proposed changes in the confirmation flow.
-- Cancel if an essential package or unexpected dependency is listed.
+- Review the APT simulation output in the operation log.
+- The tool automatically stops if the plan includes an Essential package or an unselected critical package.
+- Do not close the application while a package operation is running.
 - Keep backups of important files and system configurations.
 
 Use this software only when you understand the consequences of package removal.
