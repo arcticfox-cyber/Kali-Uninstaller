@@ -111,14 +111,18 @@ def _run_doctor():
         print("[OK] ROOT mode me chal raha hai")
     else:
         print("[!] ROOT nahi (normal) — launch par password prompt aayega")
-    for name in ("dpkg", "apt-get", "pkexec", "sudo"):
+    for name in ("dpkg", "dpkg-query", "apt-get"):
         found = shutil.which(name)
         if found:
             print(f"[OK] {name}")
         else:
             print(f"[X] {name} missing!")
-            if name in ("dpkg", "apt-get"):
-                ok = False
+            ok = False
+    for name in ("pkexec", "sudo"):
+        if shutil.which(name):
+            print(f"[OK] {name}")
+        else:
+            print(f"[!] {name} not installed (optional if the other privilege tool is available)")
     import glob as _glob
     n_icons = len(_glob.glob("/usr/share/icons/*/64x64/apps/*.png")) + \
         len(_glob.glob("/usr/share/pixmaps/*.png"))
@@ -1015,7 +1019,7 @@ class App(tk.Tk):
         self._ph_on = True
         self.search.insert(0, self._ph)
         self.search.configure(fg=DIM)
-        self.search_var.set("")
+        self.search_var.set(self._ph)
         self._apply_filter()
 
     def _ph_key(self, event):
@@ -1421,11 +1425,17 @@ class App(tk.Tk):
 
     # ----------------------------------------------------------- close ----
     def _on_close(self):
-        if self._proc is not None and self._proc.poll() is None:
-            try:
-                self._proc.terminate()
-            except Exception:
-                pass
+        # Do not terminate apt-get while dpkg may be changing the system.
+        # Closing during the simulation could also leave the confirmed removal
+        # running invisibly in its worker thread.
+        if self.busy:
+            from tkinter import messagebox
+            messagebox.showwarning(
+                "Package operation in progress",
+                "Kali Uninstaller is still working. Please wait until the "
+                "package operation and refresh finish before closing this window."
+            )
+            return
         self.destroy()
 
 
