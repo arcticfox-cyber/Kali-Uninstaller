@@ -1,51 +1,42 @@
 #!/bin/sh
-# =====================================================================
-#  KALI UNINSTALLER v2.2  —  installer
-#  Chalane ka tareeqa:   sudo ./install.sh
-#  (ya:  sudo bash install.sh  /  sudo sh install.sh — sab chalega)
-# =====================================================================
+# KALI UNINSTALLER v2.2 — installer
 set -e
 
 APP_ID="kali-uninstaller"
 APP_DIR="/opt/kali-uninstaller"
-SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" && pwd)
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
 echo "=============================================="
-echo "   KALI UNINSTALLER v2.2  —  INSTALLER"
+echo "   KALI UNINSTALLER v2.2 — INSTALLER"
 echo "=============================================="
 
-# ---------- root permission ----------
 if [ "$(id -u)" -ne 0 ]; then
-    echo "[*] Root permission chahiye — sudo se dobara chal raha hoon..."
+    echo "[*] Root permission required — restarting with sudo..."
     exec sudo -E sh "$0" "$@"
 fi
 
-# ---------- Kali check (sirf warning) ----------
 if [ -r /etc/os-release ] && grep -qE '^ID=["]?kali["]?$' /etc/os-release 2>/dev/null; then
     echo "[OK] Kali Linux detected."
 else
-    echo "[!] Note: Kali detect nahi hua — kisi bhi Debian-based system par chalega."
+    echo "[!] Kali not detected — continuing on this Debian-based system."
 fi
 
-# ---------- required files ----------
 for f in kali_uninstaller.py uninstall_me.sh assets/logo.png; do
     if [ ! -f "$SCRIPT_DIR/$f" ]; then
-        echo "[X] Missing file: $f — poora folder extract karo (zip ka jawab: unzip KaliUninstaller-v2.2.zip)." >&2
+        echo "[X] Missing required file: $SCRIPT_DIR/$f" >&2
         exit 1
     fi
 done
 
-# ---------- dependencies (sirf python3-tk) ----------
-echo "[*] Dependencies check ho rahi hain..."
+echo "[*] Checking dependencies..."
 if python3 -c "import tkinter" 2>/dev/null; then
-    echo "[OK] tkinter (GUI) pehle se maujood hai."
+    echo "[OK] tkinter is available."
 else
-    echo "[*] python3-tk install ho rahi hai (chand second lagenge)..."
+    echo "[*] Installing python3-tk..."
     apt-get update -qq || true
     apt-get install -y --no-install-recommends python3-tk
 fi
 
-# ---------- purana Arctic Fox cleanup (agar installed tha) ----------
 if [ -n "${SUDO_USER:-}" ]; then
     UH=$(getent passwd "$SUDO_USER" 2>/dev/null | cut -d: -f6)
     if [ -n "$UH" ]; then
@@ -56,29 +47,39 @@ if [ -n "${SUDO_USER:-}" ]; then
     fi
 fi
 
-# ---------- install files ----------
-echo "[*] Files copy ho rahi hain -> $APP_DIR"
+echo "[*] Installing files into $APP_DIR..."
 rm -rf "$APP_DIR"
 mkdir -p "$APP_DIR/assets"
 install -m 755 "$SCRIPT_DIR/kali_uninstaller.py" "$APP_DIR/kali_uninstaller.py"
-install -m 755 "$SCRIPT_DIR/uninstall_me.sh" "$APP_DIR/uninstall_me.sh"
-[ -f "$SCRIPT_DIR/assets/logo.png" ]        && install -m 644 "$SCRIPT_DIR/assets/logo.png"        "$APP_DIR/assets/logo.png"        || true
-[ -f "$SCRIPT_DIR/assets/logo_small.png" ]  && install -m 644 "$SCRIPT_DIR/assets/logo_small.png"  "$APP_DIR/assets/logo_small.png"  || true
-[ -f "$SCRIPT_DIR/assets/splash.png" ]      && install -m 644 "$SCRIPT_DIR/assets/splash.png"      "$APP_DIR/assets/splash.png"      || true
 
-# ---------- terminal command ----------
-echo "[*] Command ban rahi hai: /usr/bin/$APP_ID"
+# Install and verify the uninstaller explicitly; never report success if it is absent.
+install -m 755 "$SCRIPT_DIR/uninstall_me.sh" "$APP_DIR/uninstall_me.sh"
+if [ ! -s "$APP_DIR/uninstall_me.sh" ]; then
+    echo "[!] install utility did not create the uninstaller; retrying with cp..." >&2
+    cp "$SCRIPT_DIR/uninstall_me.sh" "$APP_DIR/uninstall_me.sh"
+    chmod 755 "$APP_DIR/uninstall_me.sh"
+fi
+if [ ! -s "$APP_DIR/uninstall_me.sh" ] || [ ! -x "$APP_DIR/uninstall_me.sh" ]; then
+    echo "[X] Uninstaller installation failed. Check $APP_DIR/uninstall_me.sh" >&2
+    exit 1
+fi
+echo "[OK] Uninstaller installed and verified: $APP_DIR/uninstall_me.sh"
+
+for asset in logo.png logo_small.png splash.png; do
+    if [ -f "$SCRIPT_DIR/assets/$asset" ]; then
+        install -m 644 "$SCRIPT_DIR/assets/$asset" "$APP_DIR/assets/$asset"
+    fi
+done
+
+echo "[*] Creating /usr/bin/$APP_ID..."
 cat > "/usr/bin/$APP_ID" <<'EOF'
 #!/bin/sh
-# Kali Uninstaller launcher — tool hamesha ROOT mode me khulta hai
-# (app khud pkexec/sudo se elevate hoti hai).
 export DISPLAY="${DISPLAY:-:0}"
 exec /usr/bin/python3 /opt/kali-uninstaller/kali_uninstaller.py "$@"
 EOF
 chmod 755 "/usr/bin/$APP_ID"
 
-# ---------- applications menu entry ----------
-echo "[*] Applications menu entry ban rahi hai..."
+echo "[*] Creating desktop menu entry..."
 cat > "/usr/share/applications/$APP_ID.desktop" <<EOF
 [Desktop Entry]
 Version=2.2
@@ -98,7 +99,6 @@ EOF
 chmod 644 "/usr/share/applications/$APP_ID.desktop"
 command -v update-desktop-database >/dev/null 2>&1 && update-desktop-database /usr/share/applications >/dev/null 2>&1 || true
 
-# ---------- self-check ----------
 echo
 echo "=== SELF-CHECK (doctor) ==="
 python3 "$APP_DIR/kali_uninstaller.py" --doctor || true
@@ -107,8 +107,8 @@ echo
 echo "=============================================="
 echo "   INSTALL COMPLETE!"
 echo "=============================================="
-echo "  Terminal se kholne ke liye:    kali-uninstaller"
-echo "  Ya menu se: Applications -> System -> Kali Uninstaller"
-echo "  Koi masla ho to:               kali-uninstaller --doctor"
-echo "  Tool hatane ke liye:           sudo $APP_DIR/uninstall_me.sh"
+echo "  Launch:                 kali-uninstaller"
+echo "  Diagnostics:            kali-uninstaller --doctor"
+echo "  Uninstall:              sudo sh $APP_DIR/uninstall_me.sh"
+echo "  Verified uninstaller:   $APP_DIR/uninstall_me.sh"
 echo "=============================================="
