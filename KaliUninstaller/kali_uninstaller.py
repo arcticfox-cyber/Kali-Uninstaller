@@ -551,8 +551,8 @@ class Confirm(tk.Toplevel):
                      wraplength=470, justify="left").pack(padx=26, pady=(0, 6),
                                                           anchor="w")
         else:
-            tk.Label(self, text="Package aur uski config files permanently "
-                                "remove ho jayengi (purge).",
+            tk.Label(self, text="Selected package purge hoga. APT plan pehle simulate hoga; "
+                                "agar koi unselected critical package remove hona ho to operation stop hoga.",
                      bg=BG, fg=DIM, font=("DejaVu Sans", 10),
                      wraplength=470, justify="left").pack(padx=26, anchor="w")
 
