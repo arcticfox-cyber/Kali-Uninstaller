@@ -1,72 +1,48 @@
-# ❄ Kali Uninstaller v4.3 — Whiteout Edition
+<div align="center">
 
-**“Born in the snow, built for the hunt.”**
+  <img src="../logo.png" alt="Kali Uninstaller — Arctic Fox" width="200">
 
-A graphical Kali Linux tool manager that detects installed tools from multiple package sources and helps remove selected applications, packages, and their related leftovers.
+  <h1>KALI UNINSTALLER</h1>
+  <h3>WHITEOUT EDITION · v4.3</h3>
 
-## Features
+  <p><strong>Multi-source graphical uninstaller for Kali Linux.</strong></p>
 
-- Detects tools from APT/dpkg, desktop launchers, pip, pipx, npm, Ruby gems, Cargo, Go, Flatpak, Snap, AppImages, GitHub clones, and common custom binary locations.
-- Fast initial results with additional sources scanned in parallel.
-- Bounded command timeouts and scan deadlines to avoid endless loading.
-- Optional full removal of related configuration files, caches, and launchers.
-- Safety checks for essential packages and dpkg-owned system files.
+  <p><a href="https://github.com/arcticfox-cyber/Kali-Uninstaller">Main repository and full documentation</a></p>
 
-## Requirements
+</div>
 
-- Kali Linux (or a compatible Debian-based system)
-- Python 3
-- Tkinter
+---
 
-The installer checks for Tkinter and installs `python3-tk` if it is missing. SVG icon conversion support is optional; the installer attempts to install `librsvg2-bin` when no supported converter is present.
+This directory contains the application source, installer, launcher, uninstaller, and bundled visual assets.
 
-## Download
+## Run from source
 
-```bash
-git clone https://github.com/arcticfox-cyber/Kali-Uninstaller.git
-cd Kali-Uninstaller/KaliUninstaller
-```
-
-## Run without installing
-
-From the `KaliUninstaller` directory:
+From this directory:
 
 ```bash
 chmod +x run.sh
 ./run.sh
 ```
 
-If Tkinter is missing:
+If Tkinter is unavailable:
 
 ```bash
 sudo apt update
 sudo apt install -y python3-tk
 ```
 
-You can also start the application directly:
-
-```bash
-sudo python3 kali_uninstaller.py
-```
-
-## Install system-wide (recommended)
-
-Run these commands from the `KaliUninstaller` directory:
+## Install system-wide
 
 ```bash
 chmod +x install.sh
 sudo bash install.sh
 ```
 
-The installer places the application in `/opt/kali-uninstaller`, creates the `kali-uninstaller` command, and adds a desktop menu entry.
-
-Launch:
+Launch the installed application:
 
 ```bash
 kali-uninstaller
 ```
-
-Or open **Kali Uninstaller** from your desktop application menu.
 
 ## Diagnostics
 
@@ -82,38 +58,20 @@ After system-wide installation:
 sudo sh /opt/kali-uninstaller/uninstall_me.sh
 ```
 
-To run the uninstaller directly from the downloaded source directory:
+Or run the uninstaller from this source directory:
 
 ```bash
 sudo sh uninstall_me.sh
 ```
 
-## Project structure
+## Files
 
-```text
-Kali-Uninstaller/
-├── LICENSE
-├── README.md
-├── logo.png
-└── KaliUninstaller/
-    ├── README.md
-    ├── install.sh
-    ├── run.sh
-    ├── uninstall_me.sh
-    ├── kali_uninstaller.py
-    └── assets/
-        ├── logo.png
-        ├── logo_small.png
-        └── splash.png
-```
-
-## Safety notes
-
-- Review selected items before confirming removal.
-- Essential/critical package protections are built in.
-- The application checks package ownership before deleting system files.
-- It avoids unrestricted, blind `apt autoremove`; dependency cleanup is targeted.
+- `kali_uninstaller.py` — main application
+- `install.sh` — system-wide installer
+- `run.sh` — launch from source
+- `uninstall_me.sh` — remove the system-wide installation
+- `assets/` — application artwork and images
 
 ## License
 
-See [LICENSE](../LICENSE).
+This project is proprietary. See the repository's [LICENSE](../LICENSE) for the complete terms. Public access to this repository does not grant permission to copy, modify, redistribute, or commercially exploit the Software.
