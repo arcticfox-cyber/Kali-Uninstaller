@@ -1,50 +1,163 @@
 PROPRIETARY SOFTWARE LICENSE
-Copyright (c) 2026 Arctic Fox (@arcticfox-cyber). All rights reserved.
+ALL RIGHTS RESERVED
 
-1. OWNERSHIP
+Copyright (c) 2026 Arctic Fox
+GitHub: https://github.com/arcticfox-cyber
 
-This repository and its contents, including source code, scripts, application
-architecture, algorithms, graphical user interface, visual designs, artwork,
-icons, logos, documentation, and other original materials (collectively, the
-"Software"), are proprietary and are protected by applicable intellectual
-property laws.
+IMPORTANT NOTICE
+This is proprietary software. It is NOT released under the MIT License,
+Apache License, GNU General Public License, BSD License, or any other
+open-source license. No public-use license is granted by making this
+repository or its source code publicly viewable.
 
-2. NO GENERAL LICENSE
+1. DEFINITIONS
 
-No license or other permission is granted to use, install, execute, copy,
-reproduce, modify, adapt, merge, publish, distribute, sublicense, sell,
-commercially exploit, or create derivative works from the Software, in whole
-or in part, without prior written permission from the copyright holder,
-except where applicable law requires otherwise.
+"Software" means this repository and all original materials made available
+within it, including source code, scripts, executable components, application
+logic, algorithms, architecture, interfaces, user-interface designs, graphics,
+artwork, icons, logos, documentation, and associated materials owned by the
+Copyright Holder.
 
-Access to a public repository does not grant rights beyond those that may
-arise under applicable law. Any permission must be expressly granted in
-writing by the copyright holder.
+"Copyright Holder" means Arctic Fox, the owner of the rights in the Software.
 
-3. THIRD-PARTY MATERIALS
+"Third-Party Materials" means components, libraries, tools, names, marks, or
+other materials that are owned by parties other than the Copyright Holder.
 
-This license applies only to materials owned by the copyright holder. Third-
-party software, libraries, tools, trademarks, and other materials remain
-subject to their respective owners' licenses and terms. No ownership claim is
-made over Kali Linux, Debian, Python, APT, Tkinter, or other third-party
-projects and marks.
+2. OWNERSHIP AND RESERVED RIGHTS
 
-4. DISCLAIMER
+The Software is proprietary and is protected by applicable copyright,
+intellectual-property, and other relevant laws.
+
+All rights, title, and interest in and to the Software remain with the
+Copyright Holder, except for rights that belong to third-party owners or
+that cannot lawfully be restricted.
+
+No ownership, assignment, transfer, or other proprietary interest is granted
+to any person by access to this repository.
+
+3. NO LICENSE OR GENERAL PERMISSION
+
+Except for the limited rights that applicable law does not permit the
+Copyright Holder to restrict, NO LICENSE, authorization, or permission is
+granted under this notice, whether express, implied, by estoppel, or otherwise.
+
+Without prior written permission from the Copyright Holder, you may not:
+
+a. copy, reproduce, or republish the Software or any substantial portion of it;
+b. modify, adapt, translate, or create derivative works from the Software;
+c. distribute, publish, sublicense, rent, lease, sell, or otherwise transfer
+   the Software or copies of it;
+d. use the Software or any portion of it in another product, project,
+   repository, package, or service;
+e. commercially exploit the Software, including offering it as a paid product
+   or incorporating it into a commercial service;
+f. remove, alter, or conceal copyright notices, attribution, or proprietary
+   notices included with the Software; or
+g. claim authorship, ownership, or endorsement by the Copyright Holder.
+
+The restrictions above apply to the maximum extent permitted by applicable law.
+They do not override rights that applicable law expressly grants and does not
+allow a copyright holder to restrict.
+
+4. PUBLIC REPOSITORY ACCESS
+
+The public availability of this repository is provided for viewing and
+reference purposes only. Public visibility, access to source files, cloning,
+forking functionality provided by a hosting platform, or the ability to
+download a copy does not constitute permission from the Copyright Holder to
+exercise rights that are not otherwise granted by law.
+
+A platform's technical ability to create a fork or copy does not expand the
+permissions granted under this license.
+
+5. THIRD-PARTY MATERIALS AND TRADEMARKS
+
+This license applies only to materials owned by the Copyright Holder.
+Third-Party Materials remain subject to their own respective licenses,
+copyrights, terms, and conditions. You are responsible for identifying and
+complying with those terms.
+
+Names and marks such as Kali Linux, Debian, Python, APT, Tkinter, and other
+third-party names are referenced only where relevant to compatibility or
+description. They are not owned by the Copyright Holder, and no affiliation
+with or endorsement by their owners is claimed.
+
+6. NO WARRANTY
 
 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED
-"AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
-AND NON-INFRINGEMENT.
+"AS IS" AND "AS AVAILABLE", WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+WHETHER EXPRESS, IMPLIED, OR STATUTORY.
 
-5. LIMITATION OF LIABILITY
+THIS INCLUDES, WITHOUT LIMITATION, WARRANTIES OR CONDITIONS OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT,
+ACCURACY, RELIABILITY, AVAILABILITY, AND SECURITY.
 
-TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE COPYRIGHT HOLDER SHALL
-NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF,
-OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
+THE COPYRIGHT HOLDER DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE,
+UNINTERRUPTED, SECURE, COMPATIBLE WITH EVERY SYSTEM, OR THAT DEFECTS WILL
+BE CORRECTED.
 
-6. PERMISSION REQUESTS
+7. LIMITATION OF LIABILITY
 
-To request written permission, contact the copyright holder through:
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+PUNITIVE, OR CONSEQUENTIAL DAMAGES, OR FOR LOSS OF DATA, PROFITS, REVENUE,
+SYSTEM AVAILABILITY, CONFIGURATION, OR BUSINESS OPPORTUNITY, ARISING FROM OR
+RELATED TO THE SOFTWARE OR THIS LICENSE.
+
+THIS LIMITATION APPLIES REGARDLESS OF THE LEGAL THEORY AND EVEN IF THE
+COPYRIGHT HOLDER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+Nothing in this section excludes liability that cannot lawfully be excluded
+under applicable law.
+
+8. SYSTEM-ADMINISTRATION AND DATA-LOSS NOTICE
+
+The Software can identify and remove packages, applications, files, and
+related data. Removal operations may affect system functionality or result
+in data loss, including where a user selects an incorrect item or where a
+system has unusual configuration.
+
+You are solely responsible for:
+- reviewing items and removal actions before confirmation;
+- maintaining appropriate backups;
+- verifying that you have authority to administer the target system; and
+- evaluating whether a removal is appropriate for your environment.
+
+The Software is a utility, not a guarantee that every detected item is safe
+to remove. Use it at your own risk, subject to applicable law.
+
+9. TERMINATION OF EXPRESS PERMISSIONS
+
+If the Copyright Holder separately grants written permission, that permission
+is limited to the scope and duration stated in the written authorization.
+Any permission may be terminated for a material breach, to the extent
+permitted by applicable law. Upon termination, the recipient must stop the
+activities covered by the terminated permission.
+
+10. PERMISSION REQUESTS
+
+Requests for a separate written license or other authorization must be made
+to the Copyright Holder through:
+
 https://github.com/arcticfox-cyber
 
-All rights not expressly granted in writing are reserved.
+A request does not constitute permission. Permission is effective only when
+expressly granted in writing by the Copyright Holder.
+
+11. GOVERNING LAW AND SEVERABILITY
+
+This license is subject to applicable law. If any provision is held
+unenforceable, that provision shall be limited or severed only to the extent
+necessary, and the remaining provisions shall continue to apply to the
+maximum extent permitted by law.
+
+12. ENTIRE NOTICE
+
+This document states the licensing terms for the Software unless the
+Copyright Holder expressly replaces or supplements it in a separate written
+agreement. No informal statement, repository visibility, or silence shall
+create a license or permission not expressly granted in writing.
+
+ALL RIGHTS NOT EXPRESSLY GRANTED ARE RESERVED.
+
+END OF LICENSE
