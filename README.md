@@ -1,71 +1,121 @@
-# ❄ KALI UNINSTALLER v4.3 — WHITEOUT EDITION
+# ❄ Kali Uninstaller v4.3 — Whiteout Edition
 
-**"Born in the snow, built for the hunt."**
+**“Born in the snow, built for the hunt.”**
 
-Kali Linux ka total tool remover — install/uninstall kiye gaye HAR tool ko
-dhoondta hai, dikhata hai, aur FULL delete karta hai (Revo Uninstaller style,
-Kali ke liye).
+A graphical Kali Linux tool manager that detects installed tools from multiple package sources and helps remove selected applications, packages, and their related leftovers.
 
-## v4.3 WHITEOUT — INSTANT LOAD (10-minute hang ka permanent ilaaj)
+## Features
 
-Purani version me list tab tak khali rehti thi jab tak saare sources
-(pipx/pip/npm/gem/snap/flatpak) ek-ek karke khatam na hon — koi ek slow/wedged
-command ho to tool 10+ minute "loading" dikhata tha.
+- Detects tools from APT/dpkg, desktop launchers, pip, pipx, npm, Ruby gems, Cargo, Go, Flatpak, Snap, AppImages, GitHub clones, and common custom binary locations.
+- Fast initial results with additional sources scanned in parallel.
+- Bounded command timeouts and scan deadlines to avoid endless loading.
+- Optional full removal of related configuration files, caches, and launchers.
+- Safety checks for essential packages and dpkg-owned system files.
 
-**Ab:**
-1. **TURANT PAINT** — apt + .desktop apps ~1-3s me list me aa jati hain
-   (chunk-1), phir baqi sources live aate hain
-2. **PARALLEL SOURCES** — pipx/pip/npm/gem/files-bins ek saath (5 threads),
-   koi ek slow ho to baaki rukte nahi
-3. **HAR COMMAND ka tight timeout** — npm 20s, pip 30s, gem 20s, pipx 20s,
-   snap/flatpak 8s, dpkg fallback 5s
-4. **60s GLOBAL DEADLINE** — budget paar = source skip + report; list KABHI
-   infinite loading me nahi phansegi (test me 120s-sleeping source bhi 10s
-   me skip hua)
-5. **LIVE LOAD STATUS** — `LOADING • 3s • 932 rows • pip:87 npm:5 ...` +
-   progress bar — hamesha nazar aata hai ke kaam ho raha hai
-6. **FULL DELETE upgrade** — purge ke baad jo orphan dependencies isi removal
-   se bachi unhe targeted purge (critical-guard + cap 80; global blind
-   autoremove KABHI nahi)
+## Requirements
 
-## v4.2 — FULL REMOVE (Revo-style)
-- Uninstall confirm par FULL REMOVE checkbox (default ON) — uninstall ke
-  baad leftovers (configs/caches/launchers) AUTOMATIC scan + delete
-- Deep scan coverage: 27 roots, root budget 5s, deadline 60s
+- Kali Linux (or a compatible Debian-based system)
+- Python 3
+- Tkinter
 
-## v4.1 — DEEP SCAN SPEED ENGINE
-- Parallel root scanning (6 threads) + live streaming results
-- Per-root time budget + 45s deadline — scan hamesha khatam
-- Size estimates capped (250 files / 0.6s) — HDD par bhi fast
+The installer checks for Tkinter and installs `python3-tk` if it is missing. SVG icon conversion support is optional; the installer attempts to install `librsvg2-bin` when no supported converter is present.
 
-## v4.0 — TOTAL DETECTION
-- 14 sources: apt, .desktop launchers (system/local/flatpak/snap), pip
-  (console-script tools), pipx, npm -g, ruby gems, cargo bins, go bins,
-  /opt programs, /usr/local + ~/.local custom binaries, AppImages,
-  GitHub clones, flatpak, snap — 300+ tools tak sab detect + searchable
+## Download
 
-## SAFETY (hamesha ON)
-- dpkg-owned system files kabhi delete nahi hote (live dpkg-query check,
-  fail-safe)
-- Essential/critical packages par SAFETY STOP
-- Custom tools ke files delete se pehle bhi live owner check
-- Global blind autoremove kabhi nahi — sirf targeted, simulated purge
+```bash
+git clone https://github.com/arcticfox-cyber/Kali-Uninstaller.git
+cd Kali-Uninstaller/KaliUninstaller
+```
 
-## RUN
+## Run without installing
+
+From the `KaliUninstaller` directory:
+
+```bash
+chmod +x run.sh
+./run.sh
+```
+
+If Tkinter is missing, install it with:
+
+```bash
+sudo apt update
+sudo apt install -y python3-tk
+```
+
+You can also start the application directly:
+
 ```bash
 sudo python3 kali_uninstaller.py
 ```
 
-## INSTALL (optional)
+## Install system-wide (recommended)
+
+Run these commands from the `KaliUninstaller` directory:
+
 ```bash
-cd KaliUninstaller
-sudo bash install.sh        # /opt/kali-uninstaller + launcher
-kali-uninstaller            # kisi bhi waqt
+chmod +x install.sh
+sudo bash install.sh
 ```
 
-## TESTS (sab verified)
-- Load: core 932 items 0.04s me paint, extras parallel streaming
-- Hang-simulation: 120s-sleeping source bhi 10s me skip + finalize
-- GUI smoke (Xvfb): first paint 0.14s, READY 0.6s, search OK
-- FULL DELETE: auto-deps parse + targeted purge + critical guard PASS
-- Deep scan: streaming/deadline/stop/compat PASS
+The installer places the application in `/opt/kali-uninstaller`, creates the `kali-uninstaller` command, and adds a desktop menu entry.
+
+Launch it from a terminal:
+
+```bash
+kali-uninstaller
+```
+
+Or open **Kali Uninstaller** from your desktop application menu.
+
+## Diagnostics
+
+After installation, run the built-in diagnostic check:
+
+```bash
+kali-uninstaller --doctor
+```
+
+## Uninstall
+
+After system-wide installation, run:
+
+```bash
+sudo sh /opt/kali-uninstaller/uninstall_me.sh
+```
+
+To run the uninstaller script directly from the downloaded source directory instead:
+
+```bash
+sudo sh uninstall_me.sh
+```
+
+## Project structure
+
+```text
+Kali-Uninstaller/
+├── LICENSE
+├── README.md
+├── logo.png
+└── KaliUninstaller/
+    ├── README.md
+    ├── install.sh
+    ├── run.sh
+    ├── uninstall_me.sh
+    ├── kali_uninstaller.py
+    └── assets/
+        ├── logo.png
+        ├── logo_small.png
+        └── splash.png
+```
+
+## Safety notes
+
+- Review the selected items before confirming removal.
+- Essential/critical package protections are built in.
+- The application checks package ownership before deleting system files.
+- It avoids an unrestricted, blind `apt autoremove`; dependency cleanup is targeted.
+
+## License
+
+See [LICENSE](LICENSE).
